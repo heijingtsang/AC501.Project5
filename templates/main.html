@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Minion Translator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+</head>
+<body>
+<!-- Your Semantic UI Code -->
+<h1 class="ui center aligned header">Fun Translator</h1>
+<h2 class="ui header"></h2>
+
+<form class="ui form">
+
+    <div class="field">
+        <label>Text</label>
+        <input type="text" name="text">
+    </div>
+
+    <div class="inline fields">
+        <label for="choice">What do you want to translate to? </label>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" name="choice" checked="checked" value="klingon">
+                <label>Klingon</label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" name="choice" value="minion">
+                <label>Minion</label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" name="choice" value="yoda">
+                <label>Yoda</label>
+            </div>
+        </div>
+    </div>
+
+    <h5></h5>
+    <button class="ui blue button" type="submit">Submit</button>
+
+</form>
+
+</body>
+</html>
