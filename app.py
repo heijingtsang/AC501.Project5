@@ -32,9 +32,11 @@ def home():
             jr = r.text
             data = json.loads(jr)
 
-            content.translation = data["contents"]["translated"]
-
-            flash(content.choice + '\'s translation is: ' + content.translation, 'success')
+            if data["error"]["message"]:
+                flash(data["error"]["message"], 'error')
+            else:
+                content.translation = data["contents"]["translated"]
+                flash(content.choice + '\'s translation is: ' + content.translation, 'success')
 
         return redirect(url_for('home'))
 
@@ -42,4 +44,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run()
