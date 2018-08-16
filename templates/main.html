@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Minion Translator</title>
+    <title>Fun Translator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
 </head>
@@ -41,9 +41,25 @@
     </div>
 
     <h5></h5>
-    <button class="ui blue button" type="submit">Submit</button>
+    <button class="ui blue button" type="submit" value="submit">Submit</button>
 
 </form>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+                <div class="ui icon error message">
+                    <i class="attention circle icon"></i>
+                    <div class="content">
+                        <div class="header">Error</div>
+                        <p>{{ message }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
 
 </body>
 </html>
