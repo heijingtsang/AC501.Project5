@@ -3,8 +3,14 @@ import json
 import requests
 
 app = Flask(__name__)
+app.secret_key = "First Code Academy"
 
-translation = ""
+
+class content():
+    translation = ""
+    choice = ""
+    text = ""
+
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
@@ -12,22 +18,25 @@ def home():
         if not request.form['text']:
             flash('Please input text for translation.', 'Error')
         else:
-            text = request.form['text']
-            choice = request.form['choice']
-            uri = "https://api.funtranslations.com/translate/" + choice + ".json"
-            payload = {'text': text}
+            content.text = request.form['text']
+            content.choice = request.form['choice']
+            uri = "https://api.funtranslations.com/translate/" + content.choice + ".json"
+            payload = {'text': content.text}
 
             try:
-                uResponse = requests.get(uri, params=payload)
+                r = requests.get(uri, params=payload)
             except requests.ConnectionError:
-                flash('Connection Error', 'Error')
+                flash('Connection Error', 'error')
                 return redirect(url_for('home'))
 
-            jresponse = uResponse.text
-            data = json.loads(jresponse)
+            jr = r.text
+            data = json.loads(jr)
 
-            translation = data['contents']['translated']
-            flash(choice + '\'s translation is: \n' + translation, 'Success')
+            content.translation = data["contents"]["translated"]
+
+            flash(content.choice + '\'s translation is: ' + content.translation, 'success')
+
+        return redirect(url_for('home'))
 
     return render_template("main.html")
 

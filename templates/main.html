@@ -11,7 +11,7 @@
 <h1 class="ui center aligned header">Fun Translator</h1>
 <h2 class="ui header"></h2>
 
-<form class="ui form">
+<form class="ui form" method="POST">
 
     <div class="field">
         <label>Text</label>
@@ -45,20 +45,14 @@
 
 </form>
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul class=flashes>
-            {% for message in messages %}
-                <div class="ui icon error message">
-                    <i class="attention circle icon"></i>
-                    <div class="content">
-                        <div class="header">Error</div>
-                        <p>{{ message }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <h4 class="{{ category }}">{{ message }}</h4>
+    {% endfor %}
+    </ul>
+  {% endif %}
 {% endwith %}
 
 </body>
