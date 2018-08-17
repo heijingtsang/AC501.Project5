@@ -8,6 +8,8 @@ app.secret_key = "First Code Academy"
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
+    text = ""
+
     if request.method == 'POST':
         if not request.form['text']:
             flash('Please input text for translation.', 'Error')
@@ -34,7 +36,7 @@ def home():
 
         return redirect(url_for('home'))
 
-    return render_template("main.html")
+    return render_template("main.html", text=text)
 
 
 if __name__ == '__main__':
