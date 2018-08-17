@@ -8,52 +8,67 @@
 </head>
 <body>
 <!-- Your Semantic UI Code -->
-<h1 class="ui center aligned header">Fun Translator</h1>
-<h2 class="ui header"></h2>
-
-<form class="ui form" method="POST">
-
-    <div class="field">
-        <label>Text</label>
-        <input type="text" name="text" placeholder={{ text }}>
-    </div>
-
-    <div class="inline fields">
-        <label for="choice">What do you want to translate to? </label>
-        <div class="field">
-            <div class="ui radio checkbox">
-                <input type="radio" name="choice" checked="checked" value="klingon">
-                <label>Klingon</label>
-            </div>
-        </div>
-        <div class="field">
-            <div class="ui radio checkbox">
-                <input type="radio" name="choice" value="minion">
-                <label>Minion</label>
-            </div>
-        </div>
-        <div class="field">
-            <div class="ui radio checkbox">
-                <input type="radio" name="choice" value="yoda">
-                <label>Yoda</label>
-            </div>
-        </div>
-    </div>
+<div class="ui container">
 
     <h5></h5>
-    <button class="ui blue button" type="submit" value="submit">Submit</button>
 
-</form>
+    <h1 class="ui center aligned header">Fun Translator</h1>
+    <h2 class="ui header"></h2>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for category, message in messages %}
-      <h4 class="{{ category }}">{{ message }}</h4>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+    <form class="ui form" method="POST">
+
+        <div class="field">
+            <label>Text</label>
+            <input type="text" name="text" placeholder={{ text }}>
+        </div>
+
+        <div class="inline fields">
+            <label for="choice">What do you want to translate to? </label>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="choice" checked="checked" value="klingon">
+                    <label>Klingon</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="choice" value="minion">
+                    <label>Minion</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="choice" value="shakespeare">
+                    <label>Shakespeare</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="choice" value="yoda">
+                    <label>Yoda</label>
+                </div>
+            </div>
+        </div>
+
+        <h5></h5>
+
+        <button class="fluid ui blue button" type="submit" value="submit">Submit</button>
+
+    </form>
+
+    <h2></h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for category, message in messages %}
+                    <h4 class="{{ category }}">{{ message }}</h4>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
 
 </body>
 </html>
