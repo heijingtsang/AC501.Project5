@@ -1,10 +1,11 @@
 from flask import Flask, flash, render_template, request, redirect, url_for
+from flask_sslify import SSLify
 import json
 import requests
 
 app = Flask(__name__)
 app.secret_key = "First Code Academy"
-
+# sslify = SSLify(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
