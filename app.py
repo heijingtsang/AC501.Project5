@@ -6,22 +6,16 @@ app = Flask(__name__)
 app.secret_key = "First Code Academy"
 
 
-class content():
-    translation = ""
-    choice = ""
-    text = ""
-
-
 @app.route('/', methods=['POST', 'GET'])
 def home():
     if request.method == 'POST':
         if not request.form['text']:
             flash('Please input text for translation.', 'Error')
         else:
-            content.text = request.form['text']
-            content.choice = request.form['choice']
-            uri = "https://api.funtranslations.com/translate/" + content.choice + ".json"
-            payload = {'text': content.text}
+            text = request.form['text']
+            choice = request.form['choice']
+            uri = "https://api.funtranslations.com/translate/" + choice + ".json"
+            payload = {'text': text}
 
             try:
                 r = requests.get(uri, params=payload)
@@ -32,11 +26,11 @@ def home():
             jr = r.text
             data = json.loads(jr)
 
-            if data["error"]["message"]:
+            try:
+                translation = data["contents"]["translated"]
+                flash(choice + '\'s translation is: ' + translation, 'success')
+            except (KeyError):
                 flash(data["error"]["message"], 'error')
-            else:
-                content.translation = data["contents"]["translated"]
-                flash(content.choice + '\'s translation is: ' + content.translation, 'success')
 
         return redirect(url_for('home'))
 
